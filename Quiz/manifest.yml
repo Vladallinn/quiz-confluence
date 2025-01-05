@@ -1,0 +1,36 @@
+modules:
+  confluence:globalPage:
+    - key: quiz
+      resource: quiz
+      render: native
+      resolver:
+        function: quiz_resolver
+      title: Quiz
+      route: quiz 
+
+    - key: admin
+      resource: admin-page
+      render: native
+      resolver:
+        function: admin_resolver
+      title: Admin
+      route: admin
+
+  function:
+    - key: quiz_resolver
+      handler: index.quiz_handler    
+    - key: admin_resolver
+      handler: index.admin_handler
+resources:
+  - key: quiz
+    path: src/frontend/quiz.jsx
+  - key: admin-page
+    path: src/frontend/admin.jsx
+app:
+  runtime:
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/f0b37bfd-3325-4aec-b7ee-3a3ec0e01922
+permissions:
+  scopes:
+    - read:page:confluence
+    - write:page:confluence
